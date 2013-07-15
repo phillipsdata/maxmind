@@ -63,8 +63,9 @@ class MaxmindResponse {
 
 		$data = explode(";", $this->raw);
 		foreach ($data as $parts) {
-			list($key, $value) = explode("=", $parts, 2);
-			$response->{$key} = $value;
+			$pair = explode("=", $parts, 2);
+			if (count($pair) == 2)
+				$response->{$pair[0]} = $pair[1];
 		}
 		
 		return $response;
